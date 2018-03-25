@@ -78,11 +78,14 @@ sensor:
 # Text to speech
 tts:
   - platform: google
+    language: 'de'
 
 # Cloud
 cloud:
 
 media_player:
+  - platform: frontier_silicon
+    host: !secret kitchen_radio_ip
 
 fritzbox:
   devices:
@@ -90,6 +93,48 @@ fritzbox:
       username: !secret fritzbox_username
       password: !secret fritzbox_password
 
+mqtt:
+  broker: 127.0.0.1
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+
+light:
+  - platform: mqtt_json
+    name: "Porch Strip"
+    state_topic: "bruh/porch"
+    command_topic: "bruh/porch/set"
+    effect: true
+    effect_list:
+      - bpm
+      - candy cane
+      - confetti
+      - cyclon rainbow
+      - dots
+      - fire
+      - glitter
+      - juggle
+      - lightning
+      - noise
+      - police all
+      - police one
+      - rainbow
+      - rainbow with glitter
+      - ripple
+      - sinelon
+      - solid
+      - twinkle
+    brightness: true
+    flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
+
+input_number:
+  porch_animation_speed:
+    name: Porch Animation Speed
+    initial: 150
+    min: 1
+    max: 150
+    step: 10

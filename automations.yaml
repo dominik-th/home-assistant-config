@@ -1,1 +1,23 @@
-[]
+- action:
+  - alias: ''
+    data:
+      entity_id: light.porch_strip
+    service: light.turn_on
+  alias: Start LED Strip
+  condition: []
+  id: '1522106560612'
+  trigger:
+  - at: '08:00:00'
+    platform: time
+
+- alias: Porch Animation Speed
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: input_number.porch_animation_speed
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: bruh/porch/set
+      payload: '{"transition":{{ trigger.to_state.state | int }}}'

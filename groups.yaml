@@ -24,3 +24,9 @@ forecast_2:
     - sensor.dark_sky_daily_low_temperature_2
     - sensor.dark_sky_precip_probability_2
     - sensor.dark_sky_humidity_2
+
+led_strip:
+  name: Led Strip
+  entities:
+    - light.porch_strip
+    - input_number.porch_animation_speed

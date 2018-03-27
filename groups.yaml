@@ -1,4 +1,4 @@
-weather:
+weather_today:
   name: Weather
   entities:
     - sensor.dark_sky_daily_summary
@@ -30,3 +30,26 @@ led_strip:
   entities:
     - light.porch_strip
     - input_number.porch_animation_speed
+
+# Views:
+default_view:
+  name: Wetter
+  view: true
+  entities:
+    - group.weather_today
+    - group.forecast_1
+    - group.forecast_2
+
+room_1:
+  name: Raum 1
+  view: true
+  entities:
+    - group.led_strip
+    - climate.dominik
+    - automation.start_led_strip
+
+kitchen:
+  name: Küche
+  view: true
+  entities:
+    - media_player.kr200_002261e21bcc
